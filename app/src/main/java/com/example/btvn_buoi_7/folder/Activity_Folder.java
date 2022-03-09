@@ -33,7 +33,7 @@ public class Activity_Folder extends AppCompatActivity {
     public static final String LIST_FOLDER = "list_folder";
 
     public static final String NAME_FOLDER = "name";
-    public static final String DISCRIPTION_FOLDER= "discription";
+    public static final String DESCRIPTION_FOLDER = "description";
 
     RecyclerView rcv_folder;
     public List<FolderModel> folderList;
@@ -76,8 +76,8 @@ public class Activity_Folder extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_ADD_ITEM && resultCode == RESULT_OK) {
             String name = data.getExtras().getString(NAME_FOLDER);
 
-            String discription = data.getExtras().getString(DISCRIPTION_FOLDER);
-            databaseFolder.insertFolder(name, discription);
+            String description = data.getExtras().getString(DESCRIPTION_FOLDER);
+            databaseFolder.insertFolder(name,description);
             loadData();
             Toast.makeText(this,getString(R.string.add_folder_successfully) , Toast.LENGTH_SHORT).show();
 

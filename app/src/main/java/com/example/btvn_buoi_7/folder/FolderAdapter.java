@@ -45,7 +45,7 @@ public class FolderAdapter extends RecyclerView.Adapter {
         FolderModel folder = folderModelList.get(position);
 
         ((FolderViewholder) holder).tv_name.setText(folder.getName());
-        ((FolderViewholder) holder).tv_discription.setText(folder.getDescription());
+        ((FolderViewholder) holder).tv_description.setText(folder.getDescription());
 
         ((FolderViewholder) holder).layout_item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,14 +74,14 @@ public class FolderAdapter extends RecyclerView.Adapter {
     }
 
     public class FolderViewholder extends RecyclerView.ViewHolder{
-        private TextView tv_name, tv_discription;
+        private TextView tv_name, tv_description;
         private RelativeLayout layout_item;
         private ImageView ic_option;
         public FolderViewholder(@NonNull View itemView) {
             super(itemView);
 
             tv_name = itemView.findViewById(R.id.tv_name);
-            tv_discription = itemView.findViewById(R.id.tv_discription);
+            tv_description = itemView.findViewById(R.id.tv_description);
             layout_item = itemView.findViewById(R.id.layout_item);
             ic_option = itemView.findViewById(R.id.ic_option);
 

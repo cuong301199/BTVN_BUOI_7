@@ -21,7 +21,7 @@ public class DatabaseFolder extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "folder";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
-    private static final String KEY_DISCRIPTION = "discription";
+    private static final String KEY_DESCRIPTION = "description";
 
     public DatabaseFolder(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,7 +33,7 @@ public class DatabaseFolder extends SQLiteOpenHelper {
         String sql = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME +"("+
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 KEY_NAME +" VACHAR(200),"+
-                KEY_DISCRIPTION +"  VACHAR(200) )";
+                KEY_DESCRIPTION +"  VACHAR(200) )";
 
 
         sqLiteDatabase.execSQL(sql);
@@ -53,15 +53,15 @@ public class DatabaseFolder extends SQLiteOpenHelper {
         while (data.moveToNext()){
             int id = data.getInt(0);
             String name = data.getString(1);
-            String discription = data.getString(2);
-            listFolder.add(new FolderModel(id,name,discription));
+            String description = data.getString(2);
+            listFolder.add(new FolderModel(id,name,description));
         }
         return listFolder;
     }
 
-    public void insertFolder(String name, String discription){
+    public void insertFolder(String name, String description){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO "+TABLE_NAME+"(name,discription) VALUES (?,?)",new String[]{name,discription});
+        db.execSQL("INSERT INTO "+TABLE_NAME+"(name,description) VALUES (?,?)",new String[]{name,description});
         Log.d("AAA","thêm mới dữ liệu thành công");
 
     }
@@ -70,8 +70,8 @@ public class DatabaseFolder extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE "+TABLE_NAME+" SET "+
                 KEY_NAME+" = ?,"+
-                KEY_DISCRIPTION+" = ? WHERE "+
-                KEY_ID+" = ?", new String[]{folder.getName(),folder.getDescription(), folder.getId()+""});
+                KEY_DESCRIPTION+" = ? WHERE "+
+                KEY_ID+" = ?", new String[]{folder.getName(),folder.getDescription(),folder.getId()+""});
     }
 
     public void deleteFolder(FolderModel folder){

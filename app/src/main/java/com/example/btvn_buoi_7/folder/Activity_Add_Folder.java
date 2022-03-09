@@ -10,15 +10,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.btvn_buoi_7.R;
-import com.example.btvn_buoi_7.R;
 
 import java.util.List;
 
 public class Activity_Add_Folder extends AppCompatActivity {
     TextView tv_cancel, tv_save,tv_title;
-    EditText edt_name, edt_discription;
+    EditText edt_name, edt_description;
     List<FolderModel> mlistFolder;
-    String name,discription;
+    String name, description;
     int index;
     FolderModel folder;
 
@@ -31,7 +30,7 @@ public class Activity_Add_Folder extends AppCompatActivity {
         tv_cancel = findViewById(R.id.tv_cancel);
         tv_save = findViewById(R.id.tv_save);
         edt_name = findViewById(R.id.edt_name);
-        edt_discription = findViewById(R.id.edt_discription);
+        edt_description = findViewById(R.id.edt_description);
 
         setupToolbar();
 
@@ -68,7 +67,7 @@ public class Activity_Add_Folder extends AppCompatActivity {
         tv_title.setText(getString(R.string.edit_folder));
 
         edt_name.setText(folder.getName());
-        edt_discription.setText(folder.getDescription());
+        edt_description.setText(folder.getDescription());
 
         tv_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,17 +86,17 @@ public class Activity_Add_Folder extends AppCompatActivity {
 
     private void addItemFoler() {
         name = edt_name.getText().toString().trim();
-        discription = edt_discription.getText().toString().trim();
+        description = edt_description.getText().toString().trim();
         if (checkFolderName(name)) {
             Toast.makeText(this, getString(R.string.name_folder_exists), Toast.LENGTH_SHORT).show();
         } else if (name.equals("")) {
             Toast.makeText(this, getString(R.string.name_folder_not_empty), Toast.LENGTH_SHORT).show();
-        } else if (discription.equals("")) {
+        } else if (description.equals("")) {
             Toast.makeText(this,  getString(R.string.discription_folder_exists), Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = getIntent();
             intent.putExtra(Activity_Folder.NAME_FOLDER,name);
-            intent.putExtra(Activity_Folder.DISCRIPTION_FOLDER,discription);
+            intent.putExtra(Activity_Folder.DESCRIPTION_FOLDER, description);
             setResult(RESULT_OK, intent);
             finish();
         }
@@ -105,21 +104,19 @@ public class Activity_Add_Folder extends AppCompatActivity {
     private void updateItemFoler() {
 
         String name = edt_name.getText().toString().trim();
-        String discription = edt_discription.getText().toString().trim();
-
-
+        String description = edt_description.getText().toString().trim();
 
         if (name.equals("")) {
             Toast.makeText(this, getString(R.string.name_folder_not_empty), Toast.LENGTH_SHORT).show();
-        } else if (discription.equals("")) {
+        } else if (description.equals("")) {
             Toast.makeText(this, getString(R.string.discription_folder_exists), Toast.LENGTH_SHORT).show();
-        }  else if (name.equals(folder.getName()) && discription.equals(folder.getDescription())) {
+        }  else if (name.equals(folder.getName()) && description.equals(folder.getDescription())) {
             Toast.makeText(this, getString(R.string.name_discription_not_change), Toast.LENGTH_SHORT).show();
         }else if(checkFolderName(name)){
             Toast.makeText(this, getString(R.string.name_folder_exists), Toast.LENGTH_SHORT).show();
         }else {
             folder.setName(name);
-            folder.setDescription(discription);
+            folder.setDescription(description);
             Intent intent = new Intent(this, Activity_Folder.class);
             Bundle bundle = new Bundle();
 
