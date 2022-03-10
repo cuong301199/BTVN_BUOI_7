@@ -75,9 +75,9 @@ public class Activity_Folder extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ADD_ITEM && resultCode == RESULT_OK) {
             String name = data.getExtras().getString(NAME_FOLDER);
-
             String description = data.getExtras().getString(DESCRIPTION_FOLDER);
-            databaseFolder.insertFolder(name,description);
+            FolderModel folder = new FolderModel(name, description);
+            databaseFolder.insertFolder(folder);
             loadData();
             Toast.makeText(this,getString(R.string.add_folder_successfully) , Toast.LENGTH_SHORT).show();
 

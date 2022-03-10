@@ -12,6 +12,10 @@ public class FolderModel implements Serializable {
         this.name = name;
         this.description = description;
     }
+    public FolderModel(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public String getName() {
         return name;

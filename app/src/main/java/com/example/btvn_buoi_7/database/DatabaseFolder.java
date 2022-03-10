@@ -59,9 +59,9 @@ public class DatabaseFolder extends SQLiteOpenHelper {
         return listFolder;
     }
 
-    public void insertFolder(String name, String description){
+    public void insertFolder(FolderModel folder){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO "+TABLE_NAME+"(name,description) VALUES (?,?)",new String[]{name,description});
+        db.execSQL("INSERT INTO "+TABLE_NAME+"(name,description) VALUES (?,?)",new String[]{folder.getName(),folder.getDescription()});
         Log.d("AAA","thêm mới dữ liệu thành công");
 
     }
